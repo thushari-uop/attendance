@@ -12,14 +12,14 @@ public class User {
     private String name;
     private String company;
     private String department;
-    private String epfNo;
-    private String qrCode;
+    private int epfNo;
+    private int qrCode;
     private int tableNo = 0;
     private boolean attend = Boolean.FALSE;
 
     public User() {}
 
-    public User(int id, String status, String name, String company, String department, String epfNo, String qrCode, int tableNo, boolean attend) {
+    public User(int id, String status, String name, String company, String department, int epfNo, int qrCode, int tableNo, boolean attend) {
         this.id = id;
         this.status = status;
         this.name = name;
@@ -71,19 +71,19 @@ public class User {
         this.department = department;
     }
 
-    public String getEpfNo() {
+    public int getEpfNo() {
         return epfNo;
     }
 
-    public void setEpfNo(String epfNo) {
+    public void setEpfNo(int epfNo) {
         this.epfNo = epfNo;
     }
 
-    public String getQrCode() {
+    public int getQrCode() {
         return qrCode;
     }
 
-    public void setQrCode(String qrCode) {
+    public void setQrCode(int qrCode) {
         this.qrCode = qrCode;
     }
 
