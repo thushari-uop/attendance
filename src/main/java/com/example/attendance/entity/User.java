@@ -2,6 +2,8 @@ package com.example.attendance.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class User {
 
@@ -16,10 +18,11 @@ public class User {
     private int qrCode;
     private int tableNo = 0;
     private boolean attend = Boolean.FALSE;
+    private LocalDateTime attendAt;
 
     public User() {}
 
-    public User(int id, String status, String name, String company, String department, int epfNo, int qrCode, int tableNo, boolean attend) {
+    public User(int id, String status, String name, String company, String department, int epfNo, int qrCode, int tableNo, boolean attend, LocalDateTime attendAt) {
         this.id = id;
         this.status = status;
         this.name = name;
@@ -29,6 +32,7 @@ public class User {
         this.qrCode = qrCode;
         this.tableNo = tableNo;
         this.attend = attend;
+        this.attendAt = attendAt;
     }
 
     public int getId() {
@@ -101,5 +105,13 @@ public class User {
 
     public void setAttend(boolean attend) {
         this.attend = attend;
+    }
+
+    public LocalDateTime getAttendAt() {
+        return attendAt;
+    }
+
+    public void setAttendAt(LocalDateTime attendAt) {
+        this.attendAt = attendAt;
     }
 }

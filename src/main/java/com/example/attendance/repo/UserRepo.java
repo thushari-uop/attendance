@@ -13,4 +13,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     List<User> getAllByTableNo(int tableNo);
 
     List<User> findAllByTableNo(int tableNo);
+
+    List<User> findTop10ByAttendTrueOrderByAttendAtDesc();
+
 }

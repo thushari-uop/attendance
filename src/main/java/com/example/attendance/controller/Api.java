@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -86,6 +87,7 @@ public class Api {
                 if (optionalUser.isPresent()) {
                     User user = optionalUser.get();
                     user.setAttend(true);
+                    user.setAttendAt(LocalDateTime.now());
                     userRepo.save(user);
                 } else {
                     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with ID " + id + " not found.");
@@ -98,22 +100,13 @@ public class Api {
         }
     }
 
-
-
-//    @PutMapping("/attend")
-//    public ResponseEntity<?> attendUser(@RequestBody Object ids) {
-//        try {
-//            int[] arr = (int[]) ids;
-//            for (int i = 0; i < arr.length ; i++) {
-//                User user = userRepo.findById(arr[i]).get();
-//                user.setAttend(true);
-//                userRepo.save(user);
-//            }
-//            return ResponseEntity.ok().build();
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//            return ResponseEntity.internalServerError().build();
-//        }
-//    }
+    @GetMapping("/recent-attend-list")
+    public ResponseEntity<?> getRecentAttendList() {
+        try {
+            return ResponseEntity.ok().body(userRepo.findTop10ByAttendTrueOrderByAttendAtDesc());
+        }catch (Exception e){
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 
 }
